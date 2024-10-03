@@ -1903,8 +1903,6 @@ proxyToLoon(std::vector<Proxy> &nodes, const std::string &base_conf, std::vector
             proxy += ",fast-open=true";
         if(ext.udp)
             proxy += ",udp=true";
-        if(ext.mptcp)
-            proxy += ",mptcp=true";
 
 
         if (ext.nodelist)

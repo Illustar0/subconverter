@@ -1052,7 +1052,6 @@ std::string surgeConfToClash(RESPONSE_CALLBACK_ARGS)
     ext.clash_new_field_name = global.clashUseNewField;
     ext.udp = global.UDPFlag;
     ext.tfo = global.TFOFlag;
-    ext.mptcp = global.MPTCPFlag;
     ext.skip_cert_verify = global.skipCertVerify;
     ext.tls13 = global.TLS13Flag;
     ext.clash_proxies_style = global.clashProxiesStyle;
