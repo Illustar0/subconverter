@@ -134,6 +134,7 @@ namespace qjs
 
             JS_SetPropertyStr(ctx, obj, "UDP", js_traits<tribool>::wrap(ctx, n.UDP));
             JS_SetPropertyStr(ctx, obj, "TCPFastOpen", js_traits<tribool>::wrap(ctx, n.TCPFastOpen));
+            JS_SetPropertyStr(ctx, obj, "MultiPathTCP", js_traits<tribool>::wrap(ctx, n.MultiPathTCP));
             JS_SetPropertyStr(ctx, obj, "AllowInsecure", js_traits<tribool>::wrap(ctx, n.AllowInsecure));
             JS_SetPropertyStr(ctx, obj, "TLS13", js_traits<tribool>::wrap(ctx, n.TLS13));
 

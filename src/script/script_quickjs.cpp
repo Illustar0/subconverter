@@ -497,6 +497,7 @@ int script_context_init(qjs::Context &context)
             .fun<&Proxy::QUICSecret>("QUICSecret")
             .fun<&Proxy::UDP>("UDP")
             .fun<&Proxy::TCPFastOpen>("TCPFastOpen")
+            .fun<&Proxy::MultiPathTCP>("MultiPathTCP")
             .fun<&Proxy::AllowInsecure>("AllowInsecure")
             .fun<&Proxy::TLS13>("TLS13");
         context.global().add<&makeDataURI>("makeDataURI")
