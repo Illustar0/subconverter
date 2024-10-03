@@ -221,10 +221,12 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
         tribool xudp = ext.xudp;
         tribool scv = ext.skip_cert_verify;
         tribool tfo = ext.tfo;
+        tribool mptcp = ext.mptcp;
         udp.define(x.UDP);
         xudp.define(x.XUDP);
         scv.define(x.AllowInsecure);
         tfo.define(x.TCPFastOpen);
+        mptcp.define(x.MultiPathTCP);
 
         singleproxy["name"] = remark;
         singleproxy["server"] = x.Hostname;
@@ -378,6 +380,8 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
                 singleproxy["tls"] = x.TLSSecure;
                 if (!tfo.is_undef())
                     singleproxy["tfo"] = tfo.get();
+                if (!mptcp.is_undef())
+                    singleproxy["mptcp"] = mptcp.get();
                 if (xudp && udp)
                     singleproxy["xudp"] = true;
                 if (!x.Host.empty())
@@ -1899,6 +1903,8 @@ proxyToLoon(std::vector<Proxy> &nodes, const std::string &base_conf, std::vector
             proxy += ",fast-open=true";
         if(ext.udp)
             proxy += ",udp=true";
+        if(ext.mptcp)
+            proxy += ",mptcp=true";
 
 
         if (ext.nodelist)

@@ -35,6 +35,7 @@ struct extra_settings
     tribool udp = tribool();
     tribool xudp = tribool();
     tribool tfo = tribool();
+    tribool mptcp = tribool();
     tribool skip_cert_verify = tribool();
     tribool tls13 = tribool();
     bool clash_classical_ruleset = false;

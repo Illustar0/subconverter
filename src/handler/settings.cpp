@@ -385,6 +385,7 @@ void readYAMLConf(YAML::Node &node)
         */
         global.UDPFlag.set(safe_as<std::string>(section["udp_flag"]));
         global.TFOFlag.set(safe_as<std::string>(section["tcp_fast_open_flag"]));
+        global.MPTCPFlag.set(safe_as<std::string>(section["multipath_tcp_flag"]));
         global.skipCertVerify.set(safe_as<std::string>(section["skip_cert_verify_flag"]));
         global.TLS13Flag.set(safe_as<std::string>(section["tls13_flag"]));
         section["sort_flag"] >> global.enableSort;
@@ -882,6 +883,7 @@ void readConf()
         */
         global.UDPFlag.set(ini.get("udp_flag"));
         global.TFOFlag.set(ini.get("tcp_fast_open_flag"));
+        global.MPTCPFlag.set(ini.get("multipath_tcp_flag"));
         global.skipCertVerify.set(ini.get("skip_cert_verify_flag"));
         global.TLS13Flag.set(ini.get("tls13_flag"));
         ini.get_bool_if_exist("sort_flag", global.enableSort);

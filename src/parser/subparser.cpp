@@ -33,6 +33,7 @@ void commonConstruct(Proxy &node, ProxyType type, const std::string &group, cons
     node.Port = to_int(port);
     node.UDP = udp;
     node.TCPFastOpen = tfo;
+    node.MultiPathTCP = mptcp;
     node.AllowInsecure = scv;
     node.TLS13 = tls13;
 }
@@ -91,9 +92,9 @@ void hysteria2Construct(Proxy &node, const std::string &group, const std::string
     node.OBFSPassword = obfsPassword;
 }
 
-void vlessConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &type, const std::string &id, const std::string &aid, const std::string &net, const std::string &cipher, const std::string &flow, const std::string &mode, const std::string &path, const std::string &host, const std::string &edge, const std::string &tls,const std::string &pbk, const std::string &sid, const std::string &fp ,tribool udp, tribool tfo, tribool scv, tribool tls13)
+void vlessConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &type, const std::string &id, const std::string &aid, const std::string &net, const std::string &cipher, const std::string &flow, const std::string &mode, const std::string &path, const std::string &host, const std::string &edge, const std::string &tls,const std::string &pbk, const std::string &sid, const std::string &fp ,tribool udp, tribool tfo, tribool mptcp, tribool scv, tribool tls13)
 {
-    commonConstruct(node, ProxyType::VLESS, group, remarks, add, port, udp, tfo, scv, tls13);
+    commonConstruct(node, ProxyType::VLESS, group, remarks, add, port, udp, tfo, mptcp, scv, tls13);
     node.UserId = id.empty() ? "00000000-0000-0000-0000-000000000000" : id;
     node.AlterId = to_int(aid);
     node.EncryptMethod = cipher;
@@ -1061,7 +1062,7 @@ void explodeClash(Node yamlnode, std::vector<Proxy> &nodes)
     std::string user; //socks
     std::string auth,up,down,obfsParam,insecure;//hysteria
     std::string obfsPassword;//hysteria2
-    tribool udp, tfo, scv;
+    tribool udp, tfo, mptcp, scv;
     Node singleproxy;
     uint32_t index = nodes.size();
     const std::string section = yamlnode["proxies"].IsDefined() ? "proxies" : "Proxy";
@@ -1121,7 +1122,7 @@ void explodeClash(Node yamlnode, std::vector<Proxy> &nodes)
             }
             tls = safe_as<std::string>(singleproxy["tls"]) == "true" ? "tls" : "";
 
-            vmessConstruct(node, group, ps, server, port, "", id, aid, net, cipher, path, host, edge, tls, sni, alpn, udp, tfo, scv);
+            vmessConstruct(node, group, ps, server, port, "", id, aid, net, cipher, path, host, edge, tls, sni, alpn, udp, tfo, mptcp, scv);
             break;
         case "vless"_hash:
             group = XRAY_DEFAULT_GROUP;

@@ -347,7 +347,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
 
     /// switches with default value
     tribool argUpload = getUrlArg(argument, "upload"), argEmoji = getUrlArg(argument, "emoji"), argAddEmoji = getUrlArg(argument, "add_emoji"), argRemoveEmoji = getUrlArg(argument, "remove_emoji");
-    tribool argAppendType = getUrlArg(argument, "append_type"), argTFO = getUrlArg(argument, "tfo"), argUDP = getUrlArg(argument, "udp"),argXUDP = getUrlArg(argument, "xudp"), argGenNodeList = getUrlArg(argument, "list");
+    tribool argAppendType = getUrlArg(argument, "append_type"), argTFO = getUrlArg(argument, "tfo"), argMPTCP = getUrlArg(argument, "mptcp"), argUDP = getUrlArg(argument, "udp"),argXUDP = getUrlArg(argument, "xudp"), argGenNodeList = getUrlArg(argument, "list");
     tribool argSort = getUrlArg(argument, "sort"), argUseSortScript = getUrlArg(argument, "sort_script");
     tribool argGenClashScript = getUrlArg(argument, "script"), argEnableInsert = getUrlArg(argument, "insert");
     tribool argSkipCertVerify = getUrlArg(argument, "scv"), argFilterDeprecated = getUrlArg(argument, "fdn"), argExpandRulesets = getUrlArg(argument, "expand"), argAppendUserinfo = getUrlArg(argument, "append_info");
@@ -416,6 +416,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
 
     /// read preference from argument, assign global var if not in argument
     ext.tfo.define(argTFO).define(global.TFOFlag);
+    ext.mptcp.define(argMPTCP).define(global.MPTCPFlag);
     ext.udp.define(argUDP).define(global.UDPFlag);
     ext.xudp.define(argXUDP).define(global.XUDPFlag);
     ext.skip_cert_verify.define(argSkipCertVerify).define(global.skipCertVerify);
@@ -1051,6 +1052,7 @@ std::string surgeConfToClash(RESPONSE_CALLBACK_ARGS)
     ext.clash_new_field_name = global.clashUseNewField;
     ext.udp = global.UDPFlag;
     ext.tfo = global.TFOFlag;
+    ext.mptcp = global.MPTCPFlag;
     ext.skip_cert_verify = global.skipCertVerify;
     ext.tls13 = global.TLS13Flag;
     ext.clash_proxies_style = global.clashProxiesStyle;
